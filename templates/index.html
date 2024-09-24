@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        input[type="number"] {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Grade Calculator</h1>
+        <form method="POST">
+            <label for="absences">Number of Absences:</label>
+            <input type="number" id="absences" name="absences" min="0" required>
+
+            <label for="prelim_exam_grade">Prelim Exam Grade (0-100):</label>
+            <input type="number" id="prelim_exam_grade" name="prelim_exam_grade" min="0" max="100" step="0.01" required>
+
+            <label for="quizzes_grade">Quizzes Grade (0-100):</label>
+            <input type="number" id="quizzes_grade" name="quizzes_grade" min="0" max="100" step="0.01" required>
+
+            <label for="requirements_grade">Requirements Grade (0-100):</label>
+            <input type="number" id="requirements_grade" name="requirements_grade" min="0" max="100" step="0.01" required>
+
+            <label for="recitation_grade">Recitation Grade (0-100):</label>
+            <input type="number" id="recitation_grade" name="recitation_grade" min="0" max="100" step="0.01" required>
+
+            <input type="submit" value="Calculate Grades">
+        </form>
+
+        <div class="result">
+            {% if result %}
+                <h2>Result:</h2>
+                <p>{{ result }}</p>
+            {% elif prelim_grade %}
+                <h2>Prelim Grade: {{ prelim_grade }}</h2>
+                <p>To pass with 75%, you need a Midterm grade of {{ pass_midterm }} and a Final grade of {{ pass_final }}.</p>
+                <p>To achieve 90%, you need a Midterm grade of {{ deans_midterm }} and a Final grade of {{ deans_final }}.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
